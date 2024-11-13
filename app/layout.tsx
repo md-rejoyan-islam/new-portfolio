@@ -1,3 +1,8 @@
+import Footer from "@/components/home/shared/Footer";
+import ScrollToTopButton from "@/components/home/shared/ScrollToTopButton";
+import Socials from "@/components/home/shared/Socials";
+import { StickyNav } from "@/components/home/shared/StickyNav";
+import { ThemeProvider } from "@/components/home/theme/ThemeProvider";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -28,7 +33,33 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider
+          enableSystem
+          attribute="class"
+          defaultTheme="light"
+          themes={[
+            "light",
+            "dark",
+            // "instagram",
+            // "facebook",
+            // "discord",
+            // "netflix",
+            // "twilight",
+            // "reddit",
+          ]}
+        >
+          <StickyNav />
+
+          {/* <Spotlight
+            className="top-40 left-0 md:left-96 md:top-0 z-50  "
+            fill="rgba(16, 163, 233, .7)"
+          /> */}
+
+          <main className="-mt-[70px]">{children}</main>
+          <Socials direction="col" position="fixed" />
+          <ScrollToTopButton />
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
