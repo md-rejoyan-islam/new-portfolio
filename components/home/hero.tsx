@@ -1,12 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { useRef } from "react";
+import SimpleButton, { SimpleButtonWithoutBg } from "../button/simple-button";
 import { FlipWords } from "../ui/flip-words";
-import { IconCloud } from "../ui/icon-cloud";
+import { IconCloud } from "../ui/Icon-cloud";
 
 export default function Hero() {
-  const bannerRef = useRef(null);
   const slugs = [
     "typescript",
     "javascript",
@@ -55,9 +54,9 @@ export default function Hero() {
               transition={{ duration: 0.5 }}
               className="text-center"
             >
-              <h2 className="text-5xl font-bold mb-6">
+              <h2 className="text-5xl font-bold mb-6 text-[var(--primary-title)] ">
                 Hi, I&apos;m{" "}
-                <span className="bg-gradient-to-r from-rose-600 to-pink-600 text-transparent bg-clip-text">
+                <span className="bg-gradient-to-r from-[var(--gradient-button-from)] to-[var(--gradient-button-to)] text-transparent bg-clip-text">
                   Md. Rejoyan Islam
                 </span>
               </h2>
@@ -71,27 +70,23 @@ export default function Hero() {
                 <FlipWords
                   words={words}
                   className={
-                    "bg-clip-text inline-block overflow-hidden text-wrap text-[2em] sm:text-[3em] text-[var(--primary-title)] font-medium"
+                    "bg-clip-text inline-block overflow-hidden font-medium text-wrap text-[2em] sm:text-[3em] text-[var(--primary-title)] "
                   }
                 />
               </motion.div>
-              <h2 className="  text-[2em] sm:text-[3em] font-semibold text-[var(--primary-title)]  mb-6">
-                <span className="text-text-secondary">
-                  I build things for the web.
-                </span>
+              <h2 className="  text-[2em] sm:text-[3em] font-medium text-[var(--primary-title)]  mb-6">
+                I build things for the web.
               </h2>
-              <p className="max-w-2xl mx-auto text-gray-500 mb-12">
+              <p className="max-w-2xl mx-auto text-lg text-[var(--secondary-text)] mb-12">
                 I&apos;m a full stack developer specializing in building and
                 designing exceptional digital experiences. Currently, I&apos;m
                 focused on building accessible, human-centered products.
               </p>
               <div className="flex items-center justify-center gap-4">
-                <button className="px-6 py-3 rounded-full bg-gradient-to-r from-rose-600 to-pink-600 text-white font-medium hover:opacity-90 transition-opacity flex items-center gap-2">
+                <SimpleButton>
                   View Projects <ArrowRight className="w-4 h-4" />
-                </button>
-                <button className="px-6 py-3 rounded-full border border-gray-200 text-gray-600 font-medium hover:border-gray-300 transition-colors">
-                  Download CV
-                </button>
+                </SimpleButton>
+                <SimpleButtonWithoutBg>Download CV</SimpleButtonWithoutBg>
               </div>
             </motion.div>
           </div>

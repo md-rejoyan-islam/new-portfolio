@@ -43,7 +43,7 @@ export default function ScrollToTopButton() {
             backgroundImage: `conic-gradient(rgb(5,191,219) ${pagePercentage}%, rgb(215,215,215) ${pagePercentage}%)`,
           }}
         >
-          <FaArrowUp className="text-4xl bg-white text-button  rounded-full p-1.5" />
+          <FaArrowUp className="text-4xl bg-white text-[var(--primary-button)]  rounded-full p-1.5" />
         </button>
       </div>
     </motion.div>

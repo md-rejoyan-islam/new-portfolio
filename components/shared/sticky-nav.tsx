@@ -37,7 +37,7 @@ export const StickyNav: React.FC<StickyNavProps> = ({ className }) => {
         className={cn(
           ` ${
             visible ? "" : "shadow-none"
-          } left-0 top-0 inset-x-0 w-[100vw] fixed   border-b border-[#e9e8e8] dark:border-[#121b3d]   backdrop-blur-lg z-[500] items-center justify-center`,
+          } left-0 top-0 inset-x-0 w-[100vw] fixed   border-b    backdrop-blur-lg z-[500] items-center justify-center`,
           className
         )}
       >

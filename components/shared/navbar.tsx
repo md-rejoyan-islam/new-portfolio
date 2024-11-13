@@ -13,7 +13,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { RiMenu3Line } from "react-icons/ri";
-import ThemeSwitch from "../theme/ThemeSwitch";
+import SimpleButton from "../button/simple-button";
+import ThemeSwitch from "../theme/theme-switch";
 
 export default function Navbar() {
   const links = [
@@ -55,17 +56,17 @@ export default function Navbar() {
 
   return (
     <header
-      className={`text-text-secondary h-[70px] max-w-7xl  mx-auto    px-4  `}
+      className={`text-[var(--primary-text)]  h-[70px] max-w-7xl  mx-auto    px-4  `}
     >
       <div
         className="flex items-center justify-between   mx-auto h-full"
         id="up-btn"
       >
-        <div className="">
+        <div>
           {/* for medium and large screens  */}
           <nav>
             <ul
-              className="hidden md:flex font-semibold text-lg  gap-10 justify-center items-center"
+              className="hidden md:flex font-semibold text-[17px]  gap-10 justify-center items-center"
               ref={scope}
             >
               <motion.li style={{ opacity: 0, scale: 0.3, x: -50 }}>
@@ -121,10 +122,8 @@ export default function Navbar() {
               {links.map((link, index) => (
                 <motion.li
                   className={`${
-                    pathname === link.href
-                      ? "text-[var(--primary-button)]"
-                      : "text-gray-700"
-                  } hover:text-text-root group mt-2`}
+                    pathname === link.href ? "text-[var(--primary-button)]" : ""
+                  } hover:text-[var(--primary-button)]  group mt-2`}
                   key={index}
                   style={{ opacity: 0, scale: 0.3, x: -50 }}
                 >
@@ -132,7 +131,7 @@ export default function Navbar() {
                     <Link href={link.href} className="relative z-10">
                       {link.name}
                     </Link>
-                    <div className="absolute inset-0 border-b-2 border-button transform -translate-x-full transition-transform duration-300 ease-in-out group-hover:translate-x-0"></div>
+                    <span className="absolute inset-0 border-b-2 border-[var(--primary-button)] transform -translate-x-full transition-transform duration-300 ease-in-out group-hover:translate-x-0"></span>
                   </div>
                 </motion.li>
               ))}
@@ -141,10 +140,10 @@ export default function Navbar() {
 
           <Sheet onOpenChange={setOpenModal} open={openModal}>
             <SheetTrigger className="md:hidden">
-              <RiMenu3Line className="text-3xl border-[#9498fa89] rounded-md border p-[5px] hover:bg-[#593cea24] bg-[#593cea0f] dark:bg-[#24223f47]" />
+              <RiMenu3Line className="text-3xl border-[var(--secondary-hover-button)] rounded-md border p-[5px] hover:bg-[var(--secondary-button)] text-[var(--primary-text)]  " />
             </SheetTrigger>
             <SheetContent
-              className="z-[1000] border-project-card-bg-secondary text-secondary dark:text-text-secondary md:hidden sm:max-w-[325px]  max-w-[50vw] min-w-[250px] bg-[#11082582]  backdrop-blur-[3px] "
+              className="z-[1000] border-[var(--secondary-hover-button)] text-[var(--original-bg)] md:hidden sm:max-w-[325px]  max-w-[50vw] min-w-[250px] bg-[var(--secondary-hover-button)]   backdrop-blur-[3px] "
               side={"left"}
             >
               <SheetHeader>
@@ -156,7 +155,7 @@ export default function Navbar() {
                 <ul className="flex md:hidden px-6 flex-col gap-12 items-center justify-start  ">
                   {links.map((link, index) => (
                     <li
-                      className="hover:text-[#64ffda]"
+                      className="hover:opacity-70"
                       key={index}
                       onClick={() => {
                         setOpenModal(false);
@@ -176,9 +175,9 @@ export default function Navbar() {
               window.open("https://github.com/md-rejoyan-islam", "_blank");
             }}
           >
-            <button className="px-6 py-3 rounded-full bg-gradient-to-r from-rose-600 to-pink-600 text-white font-medium hover:opacity-90 transition-opacity flex items-center gap-2">
+            <SimpleButton>
               Follow on GitHub <FaGithub className="w-4 h-4" />
-            </button>
+            </SimpleButton>
           </div>
           <ThemeSwitch />
         </div>

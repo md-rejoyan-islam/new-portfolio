@@ -1,8 +1,8 @@
-import Footer from "@/components/home/shared/Footer";
-import ScrollToTopButton from "@/components/home/shared/ScrollToTopButton";
-import Socials from "@/components/home/shared/Socials";
-import { StickyNav } from "@/components/home/shared/StickyNav";
-import { ThemeProvider } from "@/components/home/theme/ThemeProvider";
+import Footer from "@/components/shared/Footer";
+import ScrollToTopButton from "@/components/shared/scroll-to-top-button";
+import Socials from "@/components/shared/socials";
+import { StickyNav } from "@/components/shared/sticky-nav";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";

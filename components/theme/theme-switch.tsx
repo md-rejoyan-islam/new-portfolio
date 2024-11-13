@@ -16,11 +16,7 @@ export default function ThemeSwitch() {
   useOnClickOutside(ref, () => setIsOpen(false));
   if (!mounted)
     return (
-      <button
-        className="bg-background-secondary hover:gap-4 transition-all rounded-xl uppercase py-2 px-3 flex gap-2 items-center"
-        // onClick={hashAdded}
-      >
-        {/* <span>Theme</span> */}
+      <button className="bg-background-secondary hover:gap-4 transition-all rounded-xl uppercase py-2 px-3 flex gap-2 items-center">
         <FiSun key={1} />
       </button>
     );
@@ -52,8 +48,9 @@ export default function ThemeSwitch() {
   return (
     <div ref={ref} className="relative inline-block text-left">
       <button
-        className="bg-background-secondary border h-10 w-10  hover:gap-4 transition-all rounded-lg   justify-center flex gap-2 items-center hover:bg-[#593cea23] "
+        className=" hover:bg-[var(--secondary-button)] border border-[var(--secondary-hover-button)] h-10 w-10  hover:gap-4 transition-all rounded-lg   justify-center flex gap-2 items-center  "
         onClick={toggleDropdown}
+        title="Change Theme"
       >
         {toggleMenus.map((themeItem) => {
           if (themeItem.key === theme) {
@@ -63,13 +60,8 @@ export default function ThemeSwitch() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-32 origin-top-right rounded-md text-text-primary bg-dropdown shadow-xl">
-          <div
-            className="py-1 "
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="options-menu"
-          >
+        <div className="absolute right-0 bg-[var(--original-bg)] z-30 mt-2 w-32 origin-top-right rounded-md text-[var(--primary-text)] bg-dropdown shadow-xl">
+          <div className="py-1">
             {toggleMenus.map((themeItem) => {
               return (
                 <button
@@ -80,9 +72,9 @@ export default function ThemeSwitch() {
                   }}
                   className={` flex gap-2 items-center w-full px-4 py-2 text-left text-sm hover:bg-dropdownHover ${
                     themeItem.key === theme
-                      ? "bg-selected text-text-root   hover:bg-selected"
+                      ? "bg-[var(--secondary-button)]"
                       : ""
-                  }`}
+                  } hover:bg-[var(--secondary-hover-button)]`}
                 >
                   {themeItem.icon}
                   {themeItem.name}

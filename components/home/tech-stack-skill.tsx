@@ -2,9 +2,10 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Code, Database, FileJson, Globe, Server } from "lucide-react";
 import { useState } from "react";
+import { SubTitle, Title } from "./title";
 
 interface Skill {
   name: string;
@@ -132,37 +133,132 @@ export default function Skills() {
     <section className="py-16 px-4 bg-gray-50 bg-opacity-40 dark:bg-gray-900 relative ">
       <div className="w-full h-full absolute top-0 inset-x-0 bg-[url('/images/blur.png')] -z-10 opacity-10 "></div>
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-8 text-[var(--primary-title)]  dark:text-white">
-          My Tech Stack
-        </h2>
+        <Title title="My Tech Stack" />
+        <SubTitle title="Here are some of the technologies I work with." />
 
-        <div className="flex justify-center space-x-4 mb-8">
-          {["All", "Frontend", "Backend"].map((category) => (
-            <button
-              key={category}
-              onClick={() => setFilter(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                filter === category
-                  ? "bg-[var(--primary-button)] text-white"
-                  : "bg-[var(--secondary-button)] hover:bg-[var(--secondary-hover-button)] text-gray-800  dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
-              }`}
+        <div className="mt-10">
+          <div className="flex justify-center mb-12 flex-wrap gap-2 sm:gap-2">
+            {["All", "Frontend", "Backend"].map((category, index) => (
+              <motion.button
+                key={index}
+                className={`flex items-center  text-xs sm:text-sm px-6 py-3 rounded-full font-semibold mr-4 ${
+                  filter === category
+                    ? "bg-[#dd2466] text-white"
+                    : "bg-[var(--secondary-button)] text-[var(--primary-button)]"
+                }`}
+                onClick={() => setFilter(category)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {/* <tab.icon className="w-5 h-5 mr-2" /> */}
+                {category}
+              </motion.button>
+            ))}
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={filter}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
             >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {filteredSkills.map((skill) => (
-            <SkillCard
-              key={skill.name}
-              skill={skill}
-              isActive={activeSkill === skill.name}
-              onClick={() =>
-                setActiveSkill(activeSkill === skill.name ? null : skill.name)
-              }
-            />
-          ))}
+              {filter === "All" && (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                  {filteredSkills.map((skill, index) => (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                    >
+                      <SkillCard
+                        key={skill.name}
+                        skill={skill}
+                        isActive={activeSkill === skill.name}
+                        onClick={() =>
+                          setActiveSkill(
+                            activeSkill === skill.name ? null : skill.name
+                          )
+                        }
+                      />
+                      {/* <div className="w-full bg-gray-200 rounded-full h-4">
+                        <motion.div
+                          className="bg-[#dd2466] h-4 rounded-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${skill.level}%` }}
+                          transition={{ duration: 1, delay: 0.5 }}
+                        /> 
+                      </div> */}
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+              {filter === "Backend" && (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                  {filteredSkills.map((skill, index) => (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                    >
+                      <SkillCard
+                        key={skill.name}
+                        skill={skill}
+                        isActive={activeSkill === skill.name}
+                        onClick={() =>
+                          setActiveSkill(
+                            activeSkill === skill.name ? null : skill.name
+                          )
+                        }
+                      />
+                      {/* <div className="w-full bg-gray-200 rounded-full h-4">
+                        <motion.div
+                          className="bg-[#dd2466] h-4 rounded-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${skill.level}%` }}
+                          transition={{ duration: 1, delay: 0.5 }}
+                        /> 
+                      </div> */}
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+              {filter === "Frontend" && (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                  {filteredSkills.map((skill, index) => (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                    >
+                      <SkillCard
+                        key={skill.name}
+                        skill={skill}
+                        isActive={activeSkill === skill.name}
+                        onClick={() =>
+                          setActiveSkill(
+                            activeSkill === skill.name ? null : skill.name
+                          )
+                        }
+                      />
+                      {/* <div className="w-full bg-gray-200 rounded-full h-4">
+                        <motion.div
+                          className="bg-[#dd2466] h-4 rounded-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${skill.level}%` }}
+                          transition={{ duration: 1, delay: 0.5 }}
+                        /> 
+                      </div> */}
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>
