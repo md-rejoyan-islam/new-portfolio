@@ -19,6 +19,7 @@ body {
   --gradient-button-to: #db2777;
   --background: #fff;
   --foreground: #000;
+  /* --foreground: #000; */
 }
 
 @layer base {
